@@ -1,0 +1,55 @@
+{% extends 'shifts_app/base.html'%}
+
+{% block body %}
+    <h1>Shifts to be Covered</h1>
+
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'shifts_app/style.css' %}" />
+    <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+                
+                <th scope="col">Day</th>
+                <th scope="col">Date</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">End Time</th>
+                <th scope="col">User ID</th>
+                <th scope="col">Picked Up</th>
+                
+                
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for shift in all_shifts %}
+                {% if shift.shift_cover %}
+                    <tr>
+                        <td >{{shift.start_datetime|date:"l"}}</td>
+                        <td>{{shift.start_datetime|date:"M d"}}</td>
+                        <td><b>{{shift.start_datetime|time:"H:i:s"}}</b></td>
+                        <td><b>{{shift.end_datetime|time:"H:i:s"}}</b></td>
+                        <td>{{ shift.user_id }}</td>
+                        <td>
+                            <form action="{% url 'shifts_app:shift_cover' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="shift" id ="shift{{ forloop.counter }}" value="{{ shift.id }}">
+                                {% if shift.covered %}
+                                    <img src="https://i.imgur.com/b9b13Rd.png">
+                                {% endif %}
+                                <input type="submit" value="submit" >          
+                            </form>
+
+
+
+                        </td>
+
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            
+            </tbody>
+        </table>
+
+
+{% endblock %}

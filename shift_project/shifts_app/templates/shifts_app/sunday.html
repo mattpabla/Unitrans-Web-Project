@@ -1,0 +1,34 @@
+{% extends 'shifts_app/base.html'%}
+
+{% block body %}
+    {% load staticfiles %}
+    <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+                
+                <th scope="col">Day</th>
+                <th scope="col">Date</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">End Time</th>
+                <th scope="col">Runs</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for shift in all_shifts %}
+                {% if user.get_username == shift.user_id %}
+                {% if shift.start_datetime|date:"l" = 'Sunday' %}
+                <tr>
+                    <td >{{shift.start_datetime|date:"l"}}</td>
+                    <td>{{shift.start_datetime|date:"M d"}}</td>
+                    <td>{{shift.start_datetime|time:"H:i:s"}}</td>
+                    <td>{{shift.end_datetime|time:"H:i:s"}}</td>
+                    <td><a class="btn btn-danger" href="{% url 'shifts_app:detail' shift.id %}" role="button">Runs</a></td>
+                </tr>
+                {% endif %}
+                {% endif %}
+            {% endfor %}
+            
+            </tbody>
+        </table>
+{% endblock %}

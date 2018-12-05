@@ -1,0 +1,31 @@
+{% extends 'shifts_app/base.html'%}
+
+{% block body %}
+    <h1>Here are your runs</h1>
+
+    {% load staticfiles %}
+    <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+                
+                <th scope="col">Day</th>
+                <th scope="col">Date</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">End Time</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for run in shift.runs_related.all %}
+            <tr>
+                <td >{{run.start_datetime|date:"l"}}</td>
+                <td>{{run.start_datetime|date:"M d"}}</td>
+                <td><b>{{run.start_datetime|time:"H:i:s"}}</b></td>
+                <td><b>{{run.end_datetime|time:"H:i:s"}}</b></td>
+            </tr>
+            {% endfor %}
+            
+            </tbody>
+        </table>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}UNIshifts{% endblock %}</title>
+    {% load url from future %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'shifts_app/style.css' %}" />
+    <link href="https://fonts.googleapis.com/css?family=Exo+2:500" rel="stylesheet" type="text/css">
+
+    <nav class= "navbar navbar-inverse">
+        <div class= "container-fluid">
+            <div class= "navbar-header">
+                <a class="navbar-brand" href="{% url 'shifts_app:selection_page' %}">UNI.</a>
+            </div>
+        </div>
+    </nav>
+</head>
+
+
+
+
+
+
+<a class="btn btn-danger" href="{% url 'shifts_app:employee_main' %}" role="button"  style="height:300px;width:718px","font-size : 200px">Employee </a>
+
+
+<a class="btn btn-danger" href="{% url 'shifts_app:sup_main' %}" role="button" style="height:300px;width:717px">Supervisor</a>

@@ -1,0 +1,12 @@
+
+{% extends 'shifts_app/base.html'%}
+
+{% block body %}
+    {% load staticfiles %}
+        <h3>Here are your shifts: </h3>
+        <ul style="list-style-type:none">
+            {% for shift in group.shifts_related.all %}
+                <li><a href="{% url 'shifts_app:detail' group.id shift.id %}">{{shift.start_datetime|date:"M d, Y"}} {{shift.start_datetime|time:"H:i:s"}} - {{shift.end_datetime|date:"M d, Y"}} {{shift.end_datetime|time:"H:i:s"}}</a></li>
+            {% endfor %}
+        </ul>
+{% endblock %}

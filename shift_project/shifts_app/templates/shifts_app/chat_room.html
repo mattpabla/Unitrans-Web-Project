@@ -1,0 +1,21 @@
+{% extends 'shifts_app/base.html'%}
+
+{% block body %}
+    {% load staticfiles %}
+    <form id="form1">
+        Type: <input name="post" type="text">
+    </form>
+    <button onclick="output()"> Submit </button>
+
+    <script>
+        function output() {
+            var x,y;
+            x = document.getElementById("form1");
+            y = x.elements["post"].value;
+            document.getElementById("demo").innerHTML = y;
+        }
+    </script>
+
+    <p id="demo"></p>
+    
+{% endblock %}
